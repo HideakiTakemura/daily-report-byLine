@@ -1,0 +1,34 @@
+name: Daily LINE Report
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 日本時間9時（UTCの0時）
+  workflow_dispatch:
+
+jobs:
+  run-daily-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests python-dotenv google-analytics-data google-auth
+
+      - name: Run LINE report script
+        run: python daily_report_by_Line.py
+        env:
+          SHOPIFY_SHOP_NAME: ${{ secrets.SHOPIFY_SHOP_NAME }}
+          SHOPIFY_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
+          GA_PROPERTY_ID: ${{ secrets.GA_PROPERTY_ID }}
+          GA4_KEY_JSON: ${{ secrets.GA4_KEY_JSON }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          LINE_CHANNEL_TOKEN: ${{ secrets.LINE_CHANNEL_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
