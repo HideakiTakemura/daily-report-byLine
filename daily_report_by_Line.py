@@ -5,6 +5,10 @@ from google.analytics.data_v1beta.types import DateRange, Metric, RunReportReque
 import requests
 from datetime import datetime, timedelta
 
+# === タイムスタンプログ出力 ===
+JST = timezone(timedelta(hours=9))
+print("🕒 LINE通知送信スクリプト 実行開始（JST）:", datetime.now(JST).strftime('%Y-%m-%d %H:%M:%S'))
+
 load_dotenv()
 
 # === 環境変数 ===
