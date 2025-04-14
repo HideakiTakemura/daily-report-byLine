@@ -2,7 +2,7 @@ name: Daily LINE Report
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 日本時間9時（UTCの0時）
+    - cron: '0 20 * * *'
   workflow_dispatch:
 
 jobs:
