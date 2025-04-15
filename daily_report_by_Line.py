@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import DateRange, Metric, RunReportRequest
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 # === タイムスタンプログ出力 ===
 JST = timezone(timedelta(hours=9))
